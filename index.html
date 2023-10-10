@@ -20,10 +20,11 @@
 
 <body>
   <div id="app">
-    <a v-bind:href="site">Site</a>
-    <p v-bind:class="cor">Lorem ipsum dolor sit amet.</p>
-    <input type="text" v-bind:placeholder="Preencher" v-bind:value="valor">
-    <input type="checkbox" v-bind:checked="check">
+    <!--Os ":" substitui a necessidade de deixar inscrito o v-bind-->
+    <a :href="site" href="https://mateus.com.br">Site</a>
+    <p :class="cor" class="negrito">Lorem ipsum dolor sit amet.</p>
+    <input type="text" :placeholder="Preencher" :value="valor">
+    <input type="checkbox" :checked="check">
   </div>
   <script>
 
