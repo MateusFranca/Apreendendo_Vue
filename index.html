@@ -13,22 +13,26 @@
   <title>Document</title>
   <style>
     .verde {
-      color: green;
+      background-color: green;
+    }
+    .azul {
+      background-color: blue;
     }
   </style>
 </head>
 
 <body>
   <div id="app">
-    {{mensagem}}
-    <input type="text" :value="mensagem">
+    {{2+2}}
+    <input type="text" :value="2+2" :class=" 1 == 1 ? 'verde' : estilo">
   </div>
   <script>
 
     const vm = new Vue({
       el: '#app', 
       data: { 
-        mensagem: 'expressão'
+        mensagem: 'expressão',
+        estilo: 'azul',
       },
       methods: { }
     });
