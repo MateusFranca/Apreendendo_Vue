@@ -23,18 +23,23 @@
 
 <body>
   <div id="app">
-    {{2+2}}
-    <input type="text" :value="2+2" :class=" 1 == 1 ? 'verde' : estilo">
+   <input type="text" v-on:keyup="imprimirTexto()">
+   <button @click="mensagemAlerta()">Botão</button>
   </div>
   <script>
 
     const vm = new Vue({
       el: '#app', 
       data: { 
-        mensagem: 'expressão',
-        estilo: 'azul',
       },
-      methods: { }
+      methods: {
+        imprimirTexto(){
+          console.log('teste');
+        },
+        mensagemAlerta() {
+          alert('Mensagem de alerta!');
+        }
+      }
     });
 
   </script>
