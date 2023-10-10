@@ -20,27 +20,18 @@
 
 <body>
   <div id="app">
-    <!--Os ":" substitui a necessidade de deixar inscrito o v-bind-->
-    <a :href="site" href="https://mateus.com.br">Site</a>
-    <p :class="cor" class="negrito">Lorem ipsum dolor sit amet.</p>
-    <input type="text" :placeholder="Preencher" :value="valor">
-    <input type="checkbox" :checked="check">
+    {{mensagem}}
+    <input type="text" :value="mensagem">
   </div>
   <script>
 
-    const vm = new Vue({// vm = ViewModel
-      el: '#app', // # para selecionar por id e . para selecionar por class
-      data: { // guarda variaveis/atributos reativos 
-        site: 'https://mateus.com.br',
-        cor: 'verde',
-        Preencher: 'Preencher o placeholder mateus',
-        valor:'teste',
-        check:true
+    const vm = new Vue({
+      el: '#app', 
+      data: { 
+        mensagem: 'expressão'
       },
       methods: { }
-    })
-
-    //console.log(vm);
+    });
 
   </script>
 </body>
