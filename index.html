@@ -23,7 +23,7 @@
 
 <body>
   <div id="app">
-   <input type="text" v-on:keyup="imprimirTexto()">
+   <input type="text" v-on:keyup="imprimirTexto('Enviando parametro', 10)">
    <button @click="mensagemAlerta()">Botão</button>
   </div>
   <script>
@@ -31,10 +31,13 @@
     const vm = new Vue({
       el: '#app', 
       data: { 
+        xyz: true
       },
       methods: {
-        imprimirTexto(){
-          console.log('teste');
+        imprimirTexto(texto, numero){
+          console.log(texto);
+          console.log(numero);
+          console.log(this.xyz);
         },
         mensagemAlerta() {
           alert('Mensagem de alerta!');
