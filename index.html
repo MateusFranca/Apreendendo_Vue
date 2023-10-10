@@ -15,36 +15,60 @@
     .verde {
       background-color: green;
     }
+    .branco {
+      background-color: white;
+    }
+
     .azul {
       background-color: blue;
+    }
+
+    .vermelha {
+      background-color: red;
+    }
+
+    .borda {
+      border: 1px solid;
+    }
+
+    .div-principal {
+      width: 200px;
+      height: 200px;
+    }
+
+    .div-comum {
+      width: 50px;
+      height: 50px;
+      display: inline-block;
     }
   </style>
 </head>
 
 <body>
   <div id="app">
-   <input type="text" @keyup="imprimirTexto('Enviando parametro', 10)">
-   <button @click="mensagemAlerta($event, 'texto teste', 100)">Botão</button>
+    <div class="borda div-principal" :class="cor"></div>
+    Cor: {{cor}}
+    <hr>
+    <div @click="mudarCor('verde')" class="borda div-comum"></div>
+    <div class="borda div-comum" @mouseover="mudarCor('azul')"></div>
+    <div class="borda div-comum" @mouseover="mudarCor('vermelha')"></div>
+    <div class="borda div-comum" @mousemove="coordenadas($event)"></div>
   </div>
   <script>
 
     const vm = new Vue({
-      el: '#app', 
-      data: { 
-        xyz: true
+      el: '#app',
+      data: {
+        cor: 'banco'
       },
       methods: {
-        imprimirTexto(texto, numero){
-          console.log(texto);
-          console.log(numero);
-          console.log(this.xyz);
+        mudarCor(c) {
+          this.cor = c;
         },
-        mensagemAlerta(evento, texto, numero) {
-          console.log(evento, texto, numero)
+        coordenadas(e) {
+          console.log(e);
         }
-      }
-    });
-
+      }});
   </script>
 </body>
 
