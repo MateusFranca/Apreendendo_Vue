@@ -46,29 +46,50 @@
 
 <body>
   <div id="app">
-    <div class="borda div-principal" :class="cor"></div>
-    Cor: {{cor}}
-    <hr>
-    <div @click="mudarCor('verde')" class="borda div-comum"></div>
-    <div class="borda div-comum" @mouseover="mudarCor('azul')"></div>
-    <div class="borda div-comum" @mouseover="mudarCor('vermelha')"></div>
-    <div class="borda div-comum" @mousemove="coordenadas($event)"></div>
+    <a href="sadasd"
+     target="_blank"
+     v-on:click.prevent="preveniComportamentoPadrao()">link</a>
+     <br>
+     Mensagem {{msg}}
+     <hr>
+     <button @click.prevent.once="executarUmaVez()">Botão</button>
+     <p>Cliques: {{cliques}}</p>
+     <hr>
+     <form @submit.prevent.once="previnirUmaVez()">
+      <button type="submit">Enviar</button>
+      <p>Formulario: {{formulario}}</p>
+      <hr>
+      <input type="text" @keyup.Enter.Shift="capturandoTeclas($event)">
+      <p>Teclas: {{teclas}}</p>
+     </form>
   </div>
   <script>
 
     const vm = new Vue({
       el: '#app',
       data: {
-        cor: 'banco'
+        msg: '',
+        cliques: 0,
+        formulario: '',
+        teclas: '',
       },
       methods: {
-        mudarCor(c) {
-          this.cor = c;
+        preveniComportamentoPadrao() {
+          event.preventDefault(),
+          this.msg = 'testando'
         },
-        coordenadas(e) {
-          console.log(e);
+
+        executarUmaVez() {
+          this.cliques++
+        },
+        previnirUmaVez(){
+          this.formulario = 'prevenindo o comportamento padrão'
+        },
+        capturandoTeclas(event) {
+          this.teclas = 'Modificadores encadeados com sucesso!';
         }
-      }});
+      }
+    });
   </script>
 </body>
 
