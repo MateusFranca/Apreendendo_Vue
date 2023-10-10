@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Usando a versão baixada: -->
+  <script src="./vue.js"></script>
+
+  <!--Usando a versão por CDN:
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>-->
+
+  <title>Document</title>
+  <style>
+    .verde {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <a v-bind:href="site">Site</a>
+    <p v-bind:class="cor">Lorem ipsum dolor sit amet.</p>
+    <input type="text" v-bind:placeholder="Preencher" v-bind:value="valor">
+    <input type="checkbox" v-bind:checked="check">
+  </div>
+  <script>
+
+    const vm = new Vue({// vm = ViewModel
+      el: '#app', // # para selecionar por id e . para selecionar por class
+      data: { // guarda variaveis/atributos reativos 
+        site: 'https://mateus.com.br',
+        cor: 'verde',
+        Preencher: 'Preencher o placeholder mateus',
+        valor:'teste',
+        check:true
+      },
+      methods: { }
+    })
+
+    //console.log(vm);
+
+  </script>
+</body>
+
+</html>
