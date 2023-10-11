@@ -46,47 +46,30 @@
 
 <body>
   <div id="app">
-    <a href="sadasd"
-     target="_blank"
-     v-on:click.prevent="preveniComportamentoPadrao()">link</a>
-     <br>
-     Mensagem {{msg}}
-     <hr>
-     <button @click.prevent.once="executarUmaVez()">Botão</button>
-     <p>Cliques: {{cliques}}</p>
-     <hr>
-     <form @submit.prevent.once="previnirUmaVez()">
-      <button type="submit">Enviar</button>
-      <p>Formulario: {{formulario}}</p>
-      <hr>
-      <input type="text" @keyup.Enter.Shift="capturandoTeclas($event)">
-      <p>Teclas: {{teclas}}</p>
-     </form>
+    <input type="text" id="inputTexto">
+    <br>
+    <select id="opc">
+      <option value="1">Opção 1</option>
+      <option value="2">Opção 2</option>
+      <option value="3">Opção 3</option>
+    </select>
+    <br>
+    <p id="paragrafo" style="color: red;">Parágrafo</p>
+    <div id="bloco">Conteudo interno</div>
+    <button @click="selecionarElementoFilho()">Botão</button>
   </div>
   <script>
 
     const vm = new Vue({
       el: '#app',
       data: {
-        msg: '',
-        cliques: 0,
-        formulario: '',
-        teclas: '',
+
       },
       methods: {
-        preveniComportamentoPadrao() {
-          event.preventDefault(),
-          this.msg = 'testando'
-        },
-
-        executarUmaVez() {
-          this.cliques++
-        },
-        previnirUmaVez(){
-          this.formulario = 'prevenindo o comportamento padrão'
-        },
-        capturandoTeclas(event) {
-          this.teclas = 'Modificadores encadeados com sucesso!';
+        selecionarElementoFilho() {
+          //console.log(inputTexto.value)
+          //console.log(opc.value)
+          console.log(bloco.innerHTML)
         }
       }
     });
