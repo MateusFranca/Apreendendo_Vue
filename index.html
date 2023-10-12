@@ -46,63 +46,50 @@
 </head>
 
 <body>
+
+  <!-- O v-model deixa o template e o Vue sincronizados -->
+
   <div id="app">
-    
-    <!-- As propriedades computed são métodos que retornam valores formados dinamicamente, esses métodos são utilizados para minimizar a plicação de lógica dentro das expressões contidas dentro dos nosso templates-->
-
-    <h4>Adicionar Pacientes</h4>
-    <span>Nome: </span> <input type="text" id="inputNome"><br>
-    <span>idade: </span> <input type="text" id="inputIdade"><br>
-    <span>Plano: </span> <input type="text" id="inputPlano"><br>
-    <button @click="adicionarPaciente()">Adicionar</button>
+    {{pacientes}}<br>
+    <!--<input type="text" v-bind:value="pacientes" v-on:keyup="pacientes = $event.target.value">-->
+    <input type="text" v-model="pacientes">
     <hr>
-
-    <h4>Ultimo Paciente Cadastrados</h4>
-
-    <p v-if="pacientes.length > 0">
-      {{ultimoPaciente}}
-    </p>
+    <input type="radio" value="f" v-model="sexo">Feminino
+    <input type="radio" value="m" v-model="sexo">Masculino
+    {{sexo}}
+    <br>
     <hr>
-    <h4>Pacientes do plano Ouro</h4>
-    <p v-for="p in pacientesPlanoOuro">{{p.nome}}</p>
+    <select v-model="plano">
+      <option value="" disabled>Selecione um plano</option>
+      <option value="1">Básico 1</option>
+      <option value="2">Básico 2</option>
+      <option value="3">MAster</option>
+    </select>
+    <br>
+    {{plano}}
     <hr>
-
-    <h4>Pacientes Cadastrados</h4>
-    <p v-for="p in pacientes">{{p.nome}}</p>
+    <input type="checkbox" value="100" v-model="doencas">Asma
+    <input type="checkbox" value="101" v-model="doencas">Diabetes tipo 1
+    <input type="checkbox" value="102" v-model="doencas">Rinite
+    <br>
+    {{doencas}}
+    <hr>
+    <textarea name="" id="" cols="30" rows="10" v-model="diagnostico"></textarea>
+    <br>
+    {{diagnostico}}
   </div>
   <script>
 
     const vm = new Vue({
       el: '#app',
       data: {
-        pacientes: []
+        pacientes: 'Mateus da Silva',
+        sexo: '',
+        plano: '',
+        doencas: [],
+        diagnostico: ''
       },
-      methods: {
-        adicionarPaciente() {
-          this.pacientes.push(
-            {
-              nome: inputNome.value,
-              idade: inputIdade.value,
-              plano: inputPlano.value,
-            }
-          )
-        }
-      },
-      // computed ajuda nós a separar a lógica dos demais elementos
-      computed: {
-        ultimoPaciente(){
-          let key = this.pacientes.length - 1
-          let txt = ''
-          txt += 'Paciente: ' + this.pacientes[key].nome
-          txt += 'Idade: ' + this.pacientes[key].idade
-          txt += 'Plano: ' + this.pacientes[key].plano
-
-          return txt.toUpperCase();
-        },
-        pacientesPlanoOuro() {
-          return this.pacientes.filter(item => item.plano == 'Ouro')
-        }
-      }
+      methods: {}
     });
   </script>
 </body>
