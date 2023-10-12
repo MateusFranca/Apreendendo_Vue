@@ -51,6 +51,23 @@
     <ul>
       <li v-for="curso, chave in cursos">{{chave}} - {{curso}}</li>
     </ul>
+    <hr>
+    <table border="1">
+      <thead>
+          <tr>
+            <th>ID: </th>
+            <th>TITULO: </th>
+            <th>DESCRIÇÃO: </th>
+          </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(curso, chave) in cursos2"> <!--destructuring assignment: no lugar di "curso" colocar apenas os atributos que queremos usar desse objeto como: ({titulo, descricao}, chave) in cursos2-->
+          <td>{{chave}}</td>
+          <td>{{curso.titulo}}</td>
+          <td>{{curso.descricao}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <script>
 
@@ -62,7 +79,11 @@
           'BD',
           'Web Completo',
           'React'
-        ]
+        ],
+        cursos2: {
+          1000: {titulo: 'Laravel', descricao: 'Domine o PHP'},
+          1001: {titulo: 'BD', descricao: 'Aprenda BD relacionais'},
+        }
       },
       methods: {
 
