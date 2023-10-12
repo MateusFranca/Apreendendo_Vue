@@ -47,6 +47,9 @@
 
 <body>
   <div id="app">
+    
+    <!-- As propriedades computed são métodos que retornam valores formados dinamicamente, esses métodos são utilizados para minimizar a plicação de lógica dentro das expressões contidas dentro dos nosso templates-->
+
     <h4>Adicionar Pacientes</h4>
     <span>Nome: </span> <input type="text" id="inputNome"><br>
     <span>idade: </span> <input type="text" id="inputIdade"><br>
@@ -57,13 +60,11 @@
     <h4>Ultimo Paciente Cadastrados</h4>
 
     <p v-if="pacientes.length > 0">
-      Pacientes: {{pacientes[pacientes.length - 1].nome}},
-      Idade: {{pacientes[pacientes.length - 1].idade}},
-      Plano: {{pacientes[pacientes.length - 1].plano}}
+      {{ultimoPaciente}}
     </p>
     <hr>
     <h4>Pacientes do plano Ouro</h4>
-    <p v-for="p in pacientes">{{p.plano == 'Ouro' ? p.nome: ''}}</p>
+    <p v-for="p in pacientesPlanoOuro">{{p.nome}}</p>
     <hr>
 
     <h4>Pacientes Cadastrados</h4>
@@ -85,6 +86,21 @@
               plano: inputPlano.value,
             }
           )
+        }
+      },
+      // computed ajuda nós a separar a lógica dos demais elementos
+      computed: {
+        ultimoPaciente(){
+          let key = this.pacientes.length - 1
+          let txt = ''
+          txt += 'Paciente: ' + this.pacientes[key].nome
+          txt += 'Idade: ' + this.pacientes[key].idade
+          txt += 'Plano: ' + this.pacientes[key].plano
+
+          return txt.toUpperCase();
+        },
+        pacientesPlanoOuro() {
+          return this.pacientes.filter(item => item.plano == 'Ouro')
         }
       }
     });
