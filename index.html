@@ -45,50 +45,29 @@
 </head>
 
 <body>
+
+  <!-- O v-show desativa aquele(s) elementos HTML para não aparecer para o usuario, só desativando eles na estrutura. 
+  
+    Diferente do v-if que nem faz ele aparecer no código. 
+
+    O v-show é mais rápido pois não renderiza novamente. 
+  -->
+
   <div id="app">
-    <!-- V IF SIMPLES -->
-    <button @click="exibirSaldo = !exibirSaldo">
-      <span v-if="!exibirSaldo">Exibir Saldo</span>
-      <span v-if="exibirSaldo">Ocultar Saldo</span>
-    </button>
-    <p>Saldo: <span v-if="exibirSaldo">R$ {{ saldo }}</span></p>
-    <hr>
-
-    <!-- v-if e v-else -->
-
-    Idade: <input type="text" id="inputIdade" @blur="setIdade()">
-    <p v-if="idade < 18">Menor de idade</p>
-    <p v-else="idade > 18">Maior de idade</p>
-    <hr>
-
-    <!-- v-if, v-else-if e v-else -->
-
-    Nota: <input type="text" id="inputNota" @blur="setNota()">
-    <p v-if="nota == ''">Digite a nota do aluno: </p>
-    <p v-else-if="nota >= 7 && nota <= 10">Aluno Aprovado</p>
-    <p v-else-if="nota >= 5 && nota < 7">Aluno em Recuperação</p>
-    <p v-else-if="nota >= 0 && nota < 5">Aluno em Reprovado</p>
-    <p v-else>A nota é informada é inválida</p>
+    <p @mouseover="exibirTextoAjuda = true" @mouseout="exibirTextoAjuda = false">Exemplo tooltip</p>
+    <div v-show="exibirTextoAjuda">
+      <h3>Título texto ajuda</h3>
+      <p>Conteudo texto ajuda</p>
+    </div>
   </div>
   <script>
 
     const vm = new Vue({
       el: '#app',
       data: {
-        saldo: 10,
-        exibirSaldo: false,
-        idade: 0,
-        nota: 0
+        exibirTextoAjuda: false
       },
       methods: {
-        setIdade(){
-          this.idade = inputIdade.value
-        },
-
-        setNota() {
-          this.nota = inputNota.value
-          console.log(this.nota)
-        }
       }
     });
   </script>
