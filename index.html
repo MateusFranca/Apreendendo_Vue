@@ -68,6 +68,17 @@
         </tr>
       </tbody>
     </table>
+    <hr>
+    <ul>
+      <li v-for="p in publicacoes" style="border: solid 1px; margin-bottom: 10px;" :key="p.id"> <!-- A propriedade KEY faz o reposicionamento de todo o conteúdo html-->
+        <div>
+          {{p.publicacao}}
+          <hr>
+          <input type="text">
+        </div>
+      </li>
+    </ul>
+    <button @click="misturarArray()">Misturar publicações</button>
   </div>
   <script>
 
@@ -83,10 +94,31 @@
         cursos2: {
           1000: {titulo: 'Laravel', descricao: 'Domine o PHP'},
           1001: {titulo: 'BD', descricao: 'Aprenda BD relacionais'},
-        }
+        },
+        publicacoes: [
+          {
+            id: 1,
+            publicacao: 'Publicações 1',
+          },
+          {
+            id: 2,
+            publicacao: 'Publicações 2',
+          },
+          {
+            id: 3,
+            publicacao: 'Publicações 3',
+          },
+        ]
       },
       methods: {
+        misturarArray(){
+          let misturado = []
+          misturado[0] = this.publicacoes[2]
+          misturado[1] = this.publicacoes[0]
+          misturado[2] = this.publicacoes[1]
 
+          this.publicacoes = misturado
+        }
       }
     });
   </script>
