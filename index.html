@@ -46,23 +46,27 @@
 
 <body>
   <div id="app">
-    
-    <!-- Subistitui o valores/conteudo presente na div -->
-
-    <div v-html="elementosHTML"> <p>Teste</p> </div>
-    <br>
-    <!-- O v-text pega essa informações e apresenta em forma de texto puro -->
-    <div v-text="elementosHTML"></div>
+    <!-- v-once: Renderiza apenas uma vez o que está dentro de {{}} -->
+    <p v-once>Saldo inicial:{{saldo}}</p>
+    <p>Saldo atualizado:{{saldo}}</p>
+    <input type="text" id="valor">
+    <button @click="creditar()">Creditar</button>
+    <button @click="debitar()">Debitar</button>
   </div>
   <script>
 
     const vm = new Vue({
       el: '#app',
       data: {
-        elementosHTML: '<p><b>SITE</b></p> <br> <a href="https://www.amazon.com.br/">Amazon</a>'
+        saldo: 1100
       },
       methods: {
-
+        creditar() {
+          this.saldo += parseFloat(valor.value);
+        },
+        debitar() {
+          this.saldo -= parseFloat(valor.value);
+        }
       }
     });
   </script>
