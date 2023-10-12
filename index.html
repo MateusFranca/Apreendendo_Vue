@@ -15,6 +15,7 @@
     .verde {
       background-color: green;
     }
+
     .branco {
       background-color: white;
     }
@@ -46,25 +47,45 @@
 
 <body>
   <div id="app">
-    <!-- A tag template não é renderizada no broser -->
-    <template v-if="saudacao"> <!-- Rederização condicional -->
-      <h1>Boas-Vindas</h1>
-      <h1>Conteudo da tag <strong>template</strong></h1>
-    </template>
-    <!-- A tag template não aparece no navegador, apenas seu resustado. Quando não queremos a interferencia de uma elemento pai-->
-    <template v-for="n in 10">
-      <p>2 x {{n}} = {{2*n}}</p>
-    </template>
+    <h4>Adicionar Pacientes</h4>
+    <span>Nome: </span> <input type="text" id="inputNome"><br>
+    <span>idade: </span> <input type="text" id="inputIdade"><br>
+    <span>Plano: </span> <input type="text" id="inputPlano"><br>
+    <button @click="adicionarPaciente()">Adicionar</button>
+    <hr>
+
+    <h4>Ultimo Paciente Cadastrados</h4>
+
+    <p v-if="pacientes.length > 0">
+      Pacientes: {{pacientes[pacientes.length - 1].nome}},
+      Idade: {{pacientes[pacientes.length - 1].idade}},
+      Plano: {{pacientes[pacientes.length - 1].plano}}
+    </p>
+    <hr>
+    <h4>Pacientes do plano Ouro</h4>
+    <p v-for="p in pacientes">{{p.plano == 'Ouro' ? p.nome: ''}}</p>
+    <hr>
+
+    <h4>Pacientes Cadastrados</h4>
+    <p v-for="p in pacientes">{{p.nome}}</p>
   </div>
   <script>
 
     const vm = new Vue({
       el: '#app',
       data: {
-        saudacao: true, 
+        pacientes: []
       },
       methods: {
-
+        adicionarPaciente() {
+          this.pacientes.push(
+            {
+              nome: inputNome.value,
+              idade: inputIdade.value,
+              plano: inputPlano.value,
+            }
+          )
+        }
       }
     });
   </script>
