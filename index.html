@@ -46,6 +46,11 @@
 
 <body>
   <div id="app">
+    <ul>
+      <li v-for="n in numero">
+        {{n}}
+      </li>
+    </ul>
     <!-- O v-for permite usamos laçoes de repetição-->
     <!-- O v-for é muito util para trabalharmos com listas-->
     <ul>
@@ -85,6 +90,7 @@
     const vm = new Vue({
       el: '#app',
       data: {
+        numero: 5,
         cursos: [
           'Laravel',
           'BD',
